@@ -290,7 +290,7 @@
         memBtn.addEventListener("click", () => {
         // ✅ show your image
         memBox.innerHTML = `
-            <img class="memoryImg" src="assets/memory.jpg" alt="Our memory" />
+            <img class="memoryImg" src="memory.jpg" alt="Our memory" />
             <p class="memoryCaption">
             Some moments don’t need a reason — they just feel special… like this one 🌙✨
             </p>
@@ -751,3 +751,4 @@
   // expose open function to script.js
   window.openChapterModal = openChapterModal;
 })();
+
