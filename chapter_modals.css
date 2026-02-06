@@ -1,0 +1,728 @@
+/* Reusable modal system for Chapters 2-7 */
+
+.chOverlay[hidden] { display: none !important; }
+
+.chOverlay{
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  display: grid;
+  place-items: center;
+  padding: 18px;
+  background: rgba(0,0,0,0.50);
+  backdrop-filter: blur(8px);
+}
+
+.chCard{
+  width: min(840px, 95vw);
+  border-radius: 22px;
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.20);
+  box-shadow: 0 24px 80px rgba(0,0,0,0.45);
+  padding: 18px 16px 16px;
+}
+
+.chTop{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap: 10px;
+}
+
+.chTitle{
+  margin: 0;
+  font-size: clamp(1.1rem, 3vw, 1.6rem);
+}
+
+.chSub{
+  margin: 10px 0 14px;
+  color: rgba(255,255,255,0.74);
+  line-height: 1.45;
+}
+
+.chClose{
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.20);
+  color: rgba(255,255,255,0.9);
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  padding:0;
+  font-weight: 900;
+  cursor:pointer;
+}
+.chClose:hover{ filter: brightness(1.1); transform: translateY(-1px); }
+
+.chBody{
+  display: grid;
+  gap: 12px;
+}
+
+/* Shared UI blocks */
+.chPanel{
+  background: rgba(0,0,0,0.18);
+  border: 1px solid rgba(255,255,255,0.16);
+  border-radius: 16px;
+  padding: 12px;
+}
+
+.chGrid2{
+  display:grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+@media (min-width: 820px){
+  .chGrid2{ grid-template-columns: 1fr 1fr; }
+}
+
+/* Pills / chips */
+.chChips{
+  display:flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.chip{
+  border: 1px solid rgba(255,255,255,0.18);
+  background: rgba(255,255,255,0.10);
+  color: rgba(255,255,255,0.92);
+  padding: 10px 12px;
+  border-radius: 999px;
+  cursor: pointer;
+  font-weight: 800;
+}
+.chip:hover{ filter: brightness(1.08); transform: translateY(-1px); }
+
+/* Big reveal message */
+.chMsg{
+  margin: 0;
+  color: rgba(255,255,255,0.92);
+  line-height: 1.45;
+}
+
+/* Timeline */
+.timeline{
+  display:grid;
+  gap: 10px;
+}
+.tItem{
+  display:flex;
+  gap: 10px;
+  align-items:flex-start;
+  padding: 10px;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,0.14);
+  background: rgba(255,255,255,0.06);
+}
+.tDot{
+  width: 12px;
+  height: 12px;
+  border-radius: 999px;
+  margin-top: 5px;
+  background: rgba(255,255,255,0.75);
+  box-shadow: 0 0 18px rgba(255,155,197,0.5);
+}
+.tText strong{
+  display:block;
+  margin-bottom: 4px;
+}
+
+/* Promise checklist */
+.promiseList{
+  display:grid;
+  gap: 10px;
+}
+.promise{
+  display:flex;
+  gap: 10px;
+  align-items:flex-start;
+  padding: 10px;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,0.14);
+  background: rgba(255,255,255,0.06);
+}
+.promise input{ margin-top: 4px; }
+
+/* Random compliment */
+.bigBtn{
+  width: 100%;
+  border: 0;
+  padding: 12px 14px;
+  border-radius: 14px;
+  cursor: pointer;
+  font-weight: 900;
+  color: white;
+  background: linear-gradient(135deg, #ff3b7a, #ff9bc5);
+}
+.bigBtn:hover{ filter: brightness(1.08); transform: translateY(-1px); }
+
+/* Typewriter letter */
+.letter{
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+  white-space: pre-wrap;
+  line-height: 1.55;
+  color: rgba(255,255,255,0.92);
+}
+
+/* Footer actions */
+.chActions{
+  margin-top: 14px;
+  display:flex;
+  justify-content:flex-end;
+  gap: 10px;
+}
+.chDone{
+  border:0;
+  padding: 12px 18px;
+  border-radius: 999px;
+  cursor:pointer;
+  font-weight: 900;
+  color: white;
+  background: linear-gradient(135deg, #ff3b7a, #ff9bc5);
+}
+.chDone:hover{ filter: brightness(1.08); transform: translateY(-1px); }
+
+.chSecondary{
+  border: 1px solid rgba(255,255,255,0.20);
+  background: rgba(255,255,255,0.10);
+  color: rgba(255,255,255,0.92);
+  padding: 12px 18px;
+  border-radius: 999px;
+  cursor:pointer;
+  font-weight: 900;
+}
+
+/* scroll-safe overlay for small screens */
+.chOverlay{
+  overflow: auto;
+  align-items: start;
+}
+.chCard{
+  margin: 24px 0;
+  position: relative; /* needed for moving NO button inside card */
+}
+
+/* ASK UI */
+.askWrap{
+  display:grid;
+  gap: 14px;
+  justify-items:center;
+  text-align:center;
+}
+
+.cuteArt{
+  width: 140px;
+  height: 140px;
+  border-radius: 28px;
+  display:grid;
+  place-items:center;
+  background: rgba(255,255,255,0.10);
+  border: 1px solid rgba(255,255,255,0.18);
+  box-shadow: 0 18px 60px rgba(0,0,0,0.35);
+  font-size: 3rem;
+}
+
+.askText{
+  line-height: 1.45;
+  color: rgba(255,255,255,0.92);
+  font-size: 1.05rem;
+}
+
+.askBtns{
+  width: 100%;
+  display:flex;
+  gap: 12px;
+  justify-content:center;
+  flex-wrap: wrap;
+  margin-top: 8px;
+}
+
+.askYes{
+  border:0;
+  padding: 12px 18px;
+  border-radius: 999px;
+  cursor:pointer;
+  font-weight: 900;
+  color: white;
+  background: linear-gradient(135deg, #ff3b7a, #ff9bc5);
+}
+
+.askNo{
+  border: 1px solid rgba(255,255,255,0.20);
+  background: rgba(255,255,255,0.10);
+  color: rgba(255,255,255,0.92);
+  padding: 12px 18px;
+  border-radius: 999px;
+  cursor:pointer;
+  font-weight: 900;
+  position: absolute; /* we'll move it around */
+}
+
+.memoryImg{
+  width: 100%;
+  height: auto;
+  border-radius: 16px;
+  display: block;
+  border: 1px solid rgba(255,255,255,0.16);
+  background: rgba(0,0,0,0.12);
+}
+
+.memoryCaption{
+  margin: 10px 0 0;
+  color: rgba(255,255,255,0.80);
+  line-height: 1.45;
+}
+
+/* smaller button inside right panel */
+.chPanel .chip{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 140px;
+}
+
+/* Chapter 3 right-panel button: nicer glass look */
+#eternalBtn.chip{
+  width: 100%;
+  padding: 14px 16px;
+  border-radius: 18px;
+
+  /* glassy background that matches your modal */
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 155, 197, 0.35);
+
+  color: rgba(255,255,255,0.92);
+  font-weight: 900;
+  letter-spacing: 0.2px;
+
+  box-shadow:
+    0 18px 60px rgba(0,0,0,0.25),
+    0 0 0 1px rgba(255, 59, 122, 0.10) inset;
+}
+
+#eternalBtn.chip:hover{
+  background: rgba(255, 155, 197, 0.14);
+  border-color: rgba(255, 155, 197, 0.55);
+  transform: translateY(-1px);
+  filter: brightness(1.06);
+}
+
+#eternalBtn.chip:active{
+  transform: translateY(0);
+  filter: brightness(1.0);
+}
+
+
+/* ----- Chapter 5: Compliments UI ----- */
+.compWrap{
+  display: grid;
+  gap: 14px;
+}
+
+.compCard{
+  position: relative;
+  overflow: hidden;
+  border-radius: 18px;
+  padding: 16px 14px;
+  background: rgba(0,0,0,0.20);
+  border: 1px solid rgba(255,255,255,0.16);
+}
+
+.compCard::before{
+  content:"";
+  position:absolute;
+  inset:-2px;
+  background: linear-gradient(135deg,
+    rgba(255,59,122,0.35),
+    rgba(255,155,197,0.18),
+    rgba(140,80,255,0.22)
+  );
+  filter: blur(12px);
+  opacity: 0.9;
+  pointer-events:none;
+}
+
+.compInner{
+  position: relative;
+  border-radius: 16px;
+  padding: 18px 16px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.14);
+  box-shadow: 0 18px 70px rgba(0,0,0,0.25);
+}
+
+.compQuote{
+  position:absolute;
+  top: 10px;
+  left: 12px;
+  font-size: 2.2rem;
+  opacity: 0.25;
+}
+
+.compText{
+  margin: 0;
+  padding-left: 26px;
+  font-size: clamp(1.05rem, 2.6vw, 1.35rem);
+  line-height: 1.45;
+  color: rgba(255,255,255,0.95);
+  font-weight: 800;
+  letter-spacing: 0.2px;
+}
+
+/* sparkle dots */
+.sparkles{
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+}
+.sparkles span{
+  position:absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.75);
+  opacity: 0.0;
+  animation: twinkle 2.6s ease-in-out infinite;
+}
+.sparkles span:nth-child(1){ left:10%; top:22%; animation-delay: .0s; }
+.sparkles span:nth-child(2){ left:30%; top:70%; animation-delay: .6s; }
+.sparkles span:nth-child(3){ left:55%; top:30%; animation-delay: 1.0s; }
+.sparkles span:nth-child(4){ left:75%; top:62%; animation-delay: 1.4s; }
+.sparkles span:nth-child(5){ left:88%; top:28%; animation-delay: 1.9s; }
+
+@keyframes twinkle{
+  0%,100%{ transform: scale(0.7); opacity: 0.0; }
+  40%{ transform: scale(1.6); opacity: 0.55; }
+  60%{ transform: scale(1.0); opacity: 0.25; }
+}
+
+/* compliment reveal animation */
+.compPop{
+  animation: compPop .35s ease both;
+}
+@keyframes compPop{
+  from{ opacity: 0; transform: translateY(10px) scale(0.98); }
+  to{ opacity: 1; transform: translateY(0) scale(1); }
+}
+
+
+/* Make Chapter 7 popup a bit bigger */
+.chCard.askBig{
+  width: min(980px, 96vw);
+}
+
+/* No button should look solid and match Yes vibes */
+.askNo{
+  position: static;              /* ✅ initially normal aligned */
+  border: 0;
+  background: linear-gradient(135deg, #6a5cff, #4dd6ff);
+  color: white;
+  padding: 12px 18px;
+  border-radius: 999px;
+  cursor: pointer;
+  font-weight: 900;
+  box-shadow: 0 18px 60px rgba(0,0,0,0.25);
+}
+.askNo:hover{
+  filter: brightness(1.06);
+  transform: translateY(-1px);
+}
+.askNo:active{
+  transform: translateY(0);
+}
+
+
+.askNo{
+  border: 0;
+  background: linear-gradient(135deg, #6a5cff, #4dd6ff);
+  color: white;
+  padding: 12px 18px;
+  border-radius: 999px;
+  cursor: pointer;
+  font-weight: 900;
+  box-shadow: 0 18px 60px rgba(0,0,0,0.25);
+}
+
+/* Bigger modal only for ASK */
+.chCard.askBig{
+  width: min(1100px, 96vw);
+  padding: 22px 18px 18px;
+}
+
+/* Give more vertical space inside ASK */
+.askWrap{
+  gap: 18px;
+}
+
+/* Special heading design */
+.askTitle{
+  margin: 0;
+  font-size: clamp(1.5rem, 3.2vw, 2.2rem);
+  font-weight: 1000;
+  letter-spacing: 0.3px;
+  line-height: 1.1;
+  text-shadow:
+    0 18px 60px rgba(0,0,0,0.35),
+    0 0 28px rgba(255,155,197,0.22);
+}
+
+.askTitle span{
+  background: linear-gradient(135deg, rgba(255,59,122,1), rgba(255,155,197,1), rgba(140,80,255,0.85));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Fancy underline shimmer */
+.askUnderline{
+  width: min(360px, 80%);
+  height: 10px;
+  border-radius: 999px;
+  margin: 10px auto 0;
+  background: linear-gradient(90deg,
+    rgba(255,59,122,0.15),
+    rgba(255,155,197,0.45),
+    rgba(140,80,255,0.25),
+    rgba(255,155,197,0.45),
+    rgba(255,59,122,0.15)
+  );
+  filter: blur(0.2px);
+  position: relative;
+  overflow: hidden;
+}
+.askUnderline::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  transform: translateX(-40%);
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.35), transparent);
+  animation: underlineShine 2.8s ease-in-out infinite;
+}
+@keyframes underlineShine{
+  0%{ transform: translateX(-60%); }
+  50%{ transform: translateX(60%); }
+  100%{ transform: translateX(140%); }
+}
+
+/* Special terms box */
+.askTermsBox{
+  width: min(760px, 92%);
+  border-radius: 18px;
+  padding: 14px 14px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.16);
+  box-shadow: 0 18px 70px rgba(0,0,0,0.25);
+}
+
+.askTerms{
+  margin: 0;
+  font-size: clamp(0.95rem, 2.4vw, 1.08rem); /* smaller than title */
+  color: rgba(255,255,255,0.88);
+  line-height: 1.45;
+}
+
+.askTerms strong{
+  color: rgba(255,255,255,0.95);
+}
+
+/* Buttons row – make it clean */
+.askBtns{
+  display:flex;
+  gap: 12px;
+  justify-content:center;
+  flex-wrap: wrap;
+  margin-top: 6px;
+}
+
+/* NO button solid color */
+.askNo{
+  border: 0;
+  background: linear-gradient(135deg, #6a5cff, #4dd6ff);
+  color: white;
+  padding: 12px 18px;
+  border-radius: 999px;
+  cursor: pointer;
+  font-weight: 900;
+  box-shadow: 0 18px 60px rgba(0,0,0,0.25);
+}
+.askNo:hover{ filter: brightness(1.06); transform: translateY(-1px); }
+.askNo:active{ transform: translateY(0); }
+
+
+.chCard.askBig{
+  min-height: 640px;
+}
+
+/* =========================
+   FINAL CHAPTER (ASK) THEME
+   ========================= */
+.chCard.askTheme{
+  overflow: hidden;
+  border-radius: 26px;
+  border: 1px solid rgba(255,255,255,0.18);
+  background:
+    radial-gradient(900px 520px at 15% 15%, rgba(255, 59, 122, 0.35), transparent 60%),
+    radial-gradient(800px 520px at 85% 20%, rgba(77, 214, 255, 0.25), transparent 65%),
+    radial-gradient(900px 620px at 55% 110%, rgba(140, 80, 255, 0.28), transparent 65%),
+    linear-gradient(180deg, rgba(14, 12, 28, 0.92), rgba(20, 12, 36, 0.88));
+  box-shadow:
+    0 30px 110px rgba(0,0,0,0.55),
+    0 0 0 1px rgba(255,155,197,0.12) inset;
+}
+
+/* moving “aurora” blobs */
+.chCard.askTheme::before,
+.chCard.askTheme::after{
+  content:"";
+  position:absolute;
+  inset:-120px;
+  pointer-events:none;
+  filter: blur(40px);
+  opacity: 0.65;
+}
+.chCard.askTheme::before{
+  background: radial-gradient(circle at 30% 30%, rgba(255,59,122,0.55), transparent 55%),
+              radial-gradient(circle at 70% 40%, rgba(77,214,255,0.35), transparent 60%),
+              radial-gradient(circle at 55% 80%, rgba(140,80,255,0.35), transparent 65%);
+  animation: auroraDrift 10s ease-in-out infinite alternate;
+}
+.chCard.askTheme::after{
+  background: radial-gradient(circle at 40% 60%, rgba(255,155,197,0.38), transparent 55%),
+              radial-gradient(circle at 80% 75%, rgba(255,255,255,0.12), transparent 60%);
+  animation: auroraDrift2 12s ease-in-out infinite alternate;
+}
+
+@keyframes auroraDrift{
+  0%{ transform: translate(-2%, -2%) rotate(-2deg); }
+  100%{ transform: translate(2%, 2%) rotate(2deg); }
+}
+@keyframes auroraDrift2{
+  0%{ transform: translate(2%, -1%) rotate(2deg); }
+  100%{ transform: translate(-2%, 2%) rotate(-2deg); }
+}
+
+/* Make top texts feel premium */
+.askTitle{
+  text-shadow:
+    0 22px 70px rgba(0,0,0,0.45),
+    0 0 35px rgba(255,155,197,0.28);
+}
+.askTermsBox{
+  background: rgba(0,0,0,0.22);
+  border: 1px solid rgba(255,255,255,0.18);
+}
+
+/* ====== Falling stars + flowers inside the popup ====== */
+.askRain{
+  position:absolute;
+  inset:0;
+  overflow:hidden;
+  pointer-events:none;
+  z-index: 0; /* behind everything */
+}
+
+/* tiny sparkle dust */
+.askRain::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background-image:
+    radial-gradient(rgba(255,255,255,0.20) 1px, transparent 1px);
+  background-size: 18px 18px;
+  opacity: 0.22;
+  animation: dustFloat 8s ease-in-out infinite alternate;
+}
+@keyframes dustFloat{
+  from{ transform: translateY(0); }
+  to{ transform: translateY(10px); }
+}
+
+.askDrop{
+  position:absolute;
+  top: -12%;
+  opacity: 0.9;
+  filter: drop-shadow(0 12px 22px rgba(0,0,0,0.35));
+  animation-name: dropFall;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  will-change: transform;
+}
+
+@keyframes dropFall{
+  0%{ transform: translate3d(0,-30px,0) rotate(0deg); opacity: 0.0; }
+  10%{ opacity: 0.9; }
+  100%{ transform: translate3d(0,820px,0) rotate(220deg); opacity: 0.0; }
+}
+
+/* Ensure content sits above the animated layer */
+.askWrap, .chTop, .chSub, .chActions{
+  position: relative;
+  z-index: 2;
+}
+
+.askTermsBox{
+  box-shadow:
+    0 24px 80px rgba(0,0,0,0.35),
+    0 0 0 1px rgba(255,155,197,0.12) inset;
+}
+
+
+/* Make the inner terms box typography special */
+.askTermsBox{
+  padding: 18px 18px;
+  border-radius: 20px;
+}
+
+/* overall text style */
+.askTerms{
+  margin: 0;
+  font-size: clamp(1.02rem, 2.2vw, 1.15rem);
+  line-height: 1.55;
+  letter-spacing: 0.2px;
+  color: rgba(255,255,255,0.90);
+  text-align: center;
+  font-weight: 700;
+}
+
+/* highlight "Terms:" with gradient text */
+.askTerms strong{
+  font-weight: 1000;
+  background: linear-gradient(135deg, rgba(255,59,122,1), rgba(255,155,197,1), rgba(140,80,255,0.9));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 10px 28px rgba(0,0,0,0.25);
+}
+
+/* make the second line look like a cute quote */
+.askTerms br + * { } /* ignore: safe */
+.askTerms{
+  position: relative;
+}
+
+.askTerms::before,
+.askTerms::after{
+  content: "✦";
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  opacity: 0.45;
+  font-size: 1.1rem;
+  color: rgba(255,255,255,0.75);
+}
+.askTerms::before{ left: 8px; }
+.askTerms::after{ right: 8px; }
+
+/* soften emojis and add tiny glow */
+.askTerms span, .askTerms em{
+  filter: drop-shadow(0 10px 22px rgba(0,0,0,0.25));
+}
+
+/* optional: slightly different tone for second line (needs wrap in HTML - see below) */
+.askTerms .line2{
+  display:block;
+  margin-top: 6px;
+  font-weight: 650;
+  opacity: 0.92;
+}
+
+

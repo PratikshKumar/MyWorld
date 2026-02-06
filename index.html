@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Valentine’s Special 💖</title>
+  <link rel="stylesheet" href="style.css" />
+<link rel="stylesheet" href="chapter_modals.css" />
+
+</head>
+<body>
+
+  <!-- Soft heart bokeh background layer -->
+  <div class="bg" aria-hidden="true">
+    <span class="bokeh h1"></span>
+    <span class="bokeh h2"></span>
+    <span class="bokeh h3"></span>
+    <span class="bokeh h4"></span>
+    <span class="bokeh h5"></span>
+    <span class="bokeh h6"></span>
+    <span class="bokeh h7"></span>
+    <span class="bokeh h8"></span>
+  </div>
+
+  <!-- STAR CANVAS -->
+  <canvas id="stars" aria-hidden="true"></canvas>
+
+  <!-- PAGE 1: INTRO -->
+  <section id="intro" class="view active">
+    <div class="cardShell">
+
+        <h1 class="bigTitle">
+        <span class="hello">Hellooo Doctor Sahibaaaaaaa <span class="icon">🩺</span></span>
+
+        <span class="rxLine"><span class="label">Diagnosis:</span> Acute smile deficiency.</span>
+        <span class="rxLine"><span class="label">Prescription:</span> One personalized surprise.</span>
+        <span class="rxLine"><span class="label">Dosage:</span> As required for smiles.</span>
+        <span class="rxLine"><span class="label">Prognosis:</span> Excellent.</span>
+        </h1>
+
+
+
+      <p class="softLine">Made something for you. <br /> one click… and we start our little journey 🌙</p>
+
+      <div class="actions">
+        <button id="beginBtn">Yes ✨</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- PAGE 2: CHAPTERS -->
+  <section id="chapters" class="view">
+    <div class="cardShell wide">
+      <h2 class="sectionTitle">Let’s unlock our Chapters of Friendship ✨</h2>
+      <p class="sectionSub">
+        Some people feel like home, even if they arrive as strangers.<br />
+        So… here are a few tiny chapters—locked with love, opened with smiles.
+      </p>
+
+      <div id="grid" class="grid"></div>
+
+      <p class="hint" id="hintText">
+        Tip: Click the unlocked chapter to unlock the next one 🔓
+      </p>
+    </div>
+  </section>
+
+  <!-- PAGE 3: THANK YOU -->
+<!-- <section id="thankyou" class="view">
+  <div class="cardShell">
+    <h2 class="sectionTitle">Thank you 💖</h2>
+    <p class="sectionSub" style="font-size:1.2rem;">
+      thanku Shikuliiiiiiiiiii 🌸
+    </p>
+
+    <div class="actions">
+      <button onclick="location.reload()"> Finish ✨</button>
+    </div>
+  </div>
+</section> -->
+
+        <section id="thankyou" class="view">
+        <!-- celebration layer -->
+        <div class="celebrate" aria-hidden="true"></div>
+
+        <div class="cardShell thankCard">
+            <div class="yesBadge" aria-hidden="true">YES 💖</div>
+
+            <h2 class="thankTitle">
+            Thank you, <span class="nameGlow">Shikuliiiiiiiiiii</span> 🌸
+            </h2>
+
+            <p class="thankSub">
+            You just made this little website <strong>complete</strong> 😌<br/>
+          Then I’ll be honored to walk alongside you : not to lead, not to rush, just to be there.
+            </p>
+
+            <div class="finalNote">
+            <div class="finalLine">
+                “If friendship had a home address… it would be you.”
+            </div>
+            <div class="finalSign">— Pratiksh 💗</div>
+            </div>
+
+            <div class="finalActions">
+            <button id="backToChapters" class="softBtn">Back to Chapters ✨</button>
+            <button id="finalHug" class="primaryBtn">One last hug 🫂</button>
+            </div>
+        </div>
+        </section>
+
+
+
+  <!-- MODAL (Chapter 1) -->
+  <div id="modalOverlay" class="modalOverlay" hidden>
+    <div class="modalCard" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <div class="modalTop">
+        <h3 id="modalTitle" class="modalTitle">Chapter 1: A Fresh Beginning 🪷</h3>
+        <button id="closeModal" class="iconBtn" aria-label="Close">✕</button>
+      </div>
+
+      <p class="modalSub">
+        Pick a Flower each one has a tiny line for you.
+      </p>
+
+      <div class="roseRow" role="group" aria-label="Roses">
+        <button class="roseCircle" data-rose="1" aria-label="Rose 1"><span>🌸</span></button>
+        <button class="roseCircle" data-rose="2" aria-label="Rose 2"><span>🌻</span></button>
+        <button class="roseCircle" data-rose="3" aria-label="Rose 3"><span>🌷</span></button>
+        <button class="roseCircle" data-rose="4" aria-label="Rose 4"><span>💐</span></button>
+        <button class="roseCircle" data-rose="5" aria-label="Rose 5"><span>🌹</span></button>
+      </div>
+
+      <div class="roseMessageBox">
+        <p id="roseMsg" class="roseMsg">
+          Click any Flower to reveal a message ✨
+        </p>
+      </div>
+
+      <div class="modalActions">
+        <button id="doneChapter1" class="primaryBtn">Done 💖</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="signature" aria-hidden="true">
+  <div class="sigLine">Made with care, simply because it was you</div>
+  <div class="sigName">— Pratiksh</div>
+</div>
+
+
+  <script src="script.js"></script>
+<script src="chapter_modals.js"></script>
+
+</body>
+</html>
