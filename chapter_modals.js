@@ -332,7 +332,7 @@
             </div>
 
             <button class="bigBtn" id="compBtn" type="button" style="margin-top:12px;">
-            Compliment me ✨
+            I have Compliment for you. Ckick here  ✨
             </button>
         `;
 
@@ -377,7 +377,7 @@
         // first click changes button text
         if (!hasClicked) {
             hasClicked = true;
-            btn.textContent = "Compliment me again ✨";
+            btn.textContent = "One more Compliment for you. Click again pls ✨";
         }
 
         // replay animation
@@ -751,4 +751,5 @@
   // expose open function to script.js
   window.openChapterModal = openChapterModal;
 })();
+
 
