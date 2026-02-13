@@ -296,6 +296,7 @@ function startCelebration() {
     s.style.animationDelay = `${delay}s`;
 
     layer.appendChild(s);
+    
   }
 }
 
@@ -310,3 +311,20 @@ document.getElementById("finalHug")?.addEventListener("click", () => {
   burstStars?.();
   alert("🫂 Hug delivered. Now smile please 😌💖");
 });
+
+(async function trackVisitOncePerTab() {
+  try {
+    if (sessionStorage.getItem("counted_visit") === "1") return;
+    sessionStorage.setItem("counted_visit", "1");
+
+    const r = await fetch("/api/visit", { method: "POST" });
+    const data = await r.json();
+    console.log("Total visits:", data.visits);
+  } catch (e) {
+    console.log("Visit counter error:", e);
+  }
+})();
+
+
+
+
