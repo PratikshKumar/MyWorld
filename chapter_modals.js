@@ -523,9 +523,12 @@
 
                 <div class="askTermsBox" id="askTermsBox">
                 <p class="askTerms">
+                 I’m not sure if you’ll ever open this website again… <br />
+                that’s why I didn’t want to miss asking you one more thing. <br />
+                
                     <strong> As you grow from princess to queen, <br />
                     until you find your heart’s king, <br /> 
-                     may I walk beside you as a prince?  </strong>
+                     may I walk beside you as your prince?  </strong>
                 </p>
                 </div>
 
@@ -751,5 +754,6 @@
   // expose open function to script.js
   window.openChapterModal = openChapterModal;
 })();
+
 
 
