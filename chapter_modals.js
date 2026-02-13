@@ -523,8 +523,6 @@
 
                 <div class="askTermsBox" id="askTermsBox">
                 <p class="askTerms">
-                 I’m not sure if you’ll ever open this website again… <br />
-                that’s why I didn’t want to miss asking you one more thing. <br />
                 I also want to ask you something, so here it is <br />
                     <strong> As you grow from princess to queen, <br />
                     until you find your heart’s king, <br /> 
