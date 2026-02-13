@@ -413,8 +413,8 @@
         panel.className = "chPanel";
 
         panel.innerHTML = `
-          <div class="letter" id="letterBox">Click “Type it” to reveal the letter…</div>
-          <button class="bigBtn" id="typeBtn" type="button" style="margin-top:12px;">Type it ✨</button>
+          <div class="letter" id="letterBox">Click Button below to reveal the letter…</div>
+          <button class="bigBtn" id="typeBtn" type="button" style="margin-top:12px;">Ohh Nobitaaaa. Click this button ✨</button>
         `;
 
         const text =
@@ -752,6 +752,7 @@
   // expose open function to script.js
   window.openChapterModal = openChapterModal;
 })();
+
 
 
 
