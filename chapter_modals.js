@@ -523,10 +523,10 @@
 
                 <div class="askTermsBox" id="askTermsBox">
                 <p class="askTerms">
-                I also want to ask you something, so here it is <br />
+              "
                     <strong> As you grow from princess to queen, <br />
                     until you find your heart’s king, <br /> 
-                     may I walk beside you as your prince?  </strong>
+                     may I walk beside you as your prince?  </strong> "
                 </p>
                 </div>
 
@@ -752,6 +752,7 @@
   // expose open function to script.js
   window.openChapterModal = openChapterModal;
 })();
+
 
 
 
