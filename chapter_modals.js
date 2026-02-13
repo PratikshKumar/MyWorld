@@ -332,7 +332,7 @@
             </div>
 
             <button class="bigBtn" id="compBtn" type="button" style="margin-top:12px;">
-            I have Compliment for you. Ckick here  ✨
+            I have Compliment for you Dr. Sahibaaa. Click here  ✨
             </button>
         `;
 
@@ -525,7 +525,7 @@
                 <p class="askTerms">
                  I’m not sure if you’ll ever open this website again… <br />
                 that’s why I didn’t want to miss asking you one more thing. <br />
-                
+                I also want to ask you something, so here it is <br />
                     <strong> As you grow from princess to queen, <br />
                     until you find your heart’s king, <br /> 
                      may I walk beside you as your prince?  </strong>
@@ -754,6 +754,7 @@
   // expose open function to script.js
   window.openChapterModal = openChapterModal;
 })();
+
 
 
 
